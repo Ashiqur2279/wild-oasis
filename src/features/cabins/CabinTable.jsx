@@ -28,6 +28,7 @@ const TableHeader = styled.header`
 `;
 
 import Spinner from "./../../ui/Spinner";
+import CabinRow from "./CabinRow";
 const CabinTable = () => {
   const {
     isLoading,
@@ -41,7 +42,22 @@ const CabinTable = () => {
   if (isLoading) {
     return <Spinner />;
   }
-  return <div>this is cabin table</div>;
+  return (
+    <Table role="table">
+      <TableHeader role="row">
+        <div>Cabin</div>
+        <div>Cabin Name</div>
+        <div>Guest Capacity</div>
+        <div>Price</div>
+        <div>Discount</div>
+        <div>Description</div>
+      </TableHeader>
+      {cabinData.map((cabin) => (
+        // console.log(cabin)
+        <CabinRow key={cabin.id} cabin={cabin} />
+      ))}
+    </Table>
+  );
 };
 
 export default CabinTable;
