@@ -15,7 +15,7 @@ const TableRow = styled.div`
 const Img = styled.img`
   display: block;
   width: 6.4rem;
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 3 / 3;
   object-fit: cover;
   object-position: center;
   transform: scale(1.5) translateX(-7px);
@@ -40,10 +40,9 @@ const Discount = styled.div`
 `;
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import React from "react";
+import toast from "react-hot-toast";
 import { deleteCabin } from "../../services/apiCabins";
 import { formatCurrency } from "../../utils/helpers";
-import toast from "react-hot-toast";
 
 const CabinRow = ({ cabin }) => {
   const {
@@ -56,6 +55,7 @@ const CabinRow = ({ cabin }) => {
     image,
   } = cabin;
 
+  console.log(cabin.image);
   const queryClient = useQueryClient();
   const { isLoading: isDeleting, mutate } = useMutation({
     mutationFn: (id) => deleteCabin(id),
